@@ -577,21 +577,6 @@ bool XBPython::OnScriptInitialized(ILanguageInvoker *invoker)
   m_iDllScriptCounter++;
   if (!m_bInitialized)
   {
-    // first we check if all necessary files are installed
-#ifndef TARGET_POSIX
-    if (!FileExist("special://xbmc/system/python/DLLs/_socket.pyd") ||
-      !FileExist("special://xbmc/system/python/DLLs/_ssl.pyd") ||
-      !FileExist("special://xbmc/system/python/DLLs/_bz2.pyd") ||
-      !FileExist("special://xbmc/system/python/DLLs/pyexpat.pyd") ||
-      !FileExist("special://xbmc/system/python/DLLs/select.pyd") ||
-      !FileExist("special://xbmc/system/python/DLLs/unicodedata.pyd"))
-    {
-      CLog::Log(LOGERROR, "Python: Missing files, unable to execute script");
-      Finalize();
-      return false;
-    }
-#endif
-
     // Darwin packs .pyo files, we need PYTHONOPTIMIZE on in order to load them.
     // linux built with unified builds only packages the pyo files so need it
 #if defined(TARGET_DARWIN) || defined(TARGET_LINUX)
