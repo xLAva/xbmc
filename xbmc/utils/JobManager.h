@@ -78,7 +78,7 @@ class CJobQueue: public IJobCallback
     bool operator==(const CJob *job) const
     {
       if (m_job)
-        return *m_job == job;
+        return m_job == job;
       return false;
     };
     CJob *m_job;
